@@ -1,0 +1,185 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure body and html take full viewport height */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent unwanted scrollbars even though I should have them*/
+}
+
+/* Body style */
+body {
+    font-family: Arial, sans-serif;
+    /* Background lighter grey gradient */
+    background: linear-gradient(to bottom, #4a4a4a, #2f2f2f);
+    color: white; /* Default text color for contrast */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Progress Bar and Status Section */
+#progress-section {
+    height: 10vh; /* 10% of viewport height apparently*/
+    background-color: #ddd;
+    position: relative;
+}
+
+#progress-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 100%;
+    background-color: #ddd;
+}
+
+#progress-fill {
+    /* Progress bar is dark blue */
+    background-color: #1e3d7b;
+    width: 25%; /* Starts at 25% */
+    height: 100%;
+    transition: width 0.1s linear;
+}
+
+#progress-text {
+    position: absolute;
+    top: 0;
+    left: 10px; /* Left-aligned */
+    font-weight: bold;
+    line-height: 10vh; /* Match height of progress section */
+    color: black; /* Text color changed to black */
+}
+
+/* Main Content */
+#main-content {
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    flex-direction: row; /* Split left and right */
+    overflow: hidden; /* Prevent unwanted scrollbars */
+}
+
+/* Left Section */
+#left-section {
+    width: 50%; /* Half of the main content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1vh;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Right Section */
+#right-section {
+    width: 50%; /* Half of the main content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vh;
+    box-sizing: border-box;
+}
+
+/* Fractal Canvas */
+#fractal-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* AI Toggle Button */
+#toggle-ai {
+    width: 90%;
+    max-width: 400px;
+    height: 6vh; /* Responsive height */
+    font-size: 3vh; /* Responsive font size */
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    animation: wiggle 1s infinite;
+    text-align: left; /* Left-aligned text */
+    padding-left: 10px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+/* Keypad */
+#keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1vh; /* Responsive gap */
+    width: 80%; /* Reduced width to make buttons smaller */
+    max-width: 300px; /* Adjusted max-width */
+    position: relative;
+    z-index: 1; /* Below robot arms */
+}
+
+.key {
+    width: 100%;
+    padding-top: 100%; /* Makes buttons square */
+    position: relative;
+    font-size: 40px; /* Reduced font size */
+    border: 1px solid #999;
+    border-radius: 50%; /* Makes buttons circular */
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.1s;
+    background-color: #d3d3d3; /* Light grey background */
+    color: white; /* Numbers are white */
+    overflow: hidden;
+}
+
+.key span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.key:active,
+.key.pressed {
+    transform: scale(0.95);
+    background-color: #bbb;
+}
+
+/* Robot Container */
+#robot-container {
+    width: auto;
+    height: 25vh; /* Adjusted height */
+    margin-top: 1vh;
+    position: relative;
+    z-index: 4; /* Above keypad lol doesnt work i hate css */
+}
+
+#robot {
+    height: 100%;
+    width: auto;
+}
+
+/* Adjustments for smaller screens */
+@media only screen and (max-height: 799px) {
+    #progress-text {
+        font-size: 2vh;
+    }
+
+    .key {
+        font-size: 2vh;
+    }
+
+    #toggle-ai {
+        font-size: 2vh;
+    }
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(-2deg); }
+}
